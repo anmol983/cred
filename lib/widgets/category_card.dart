@@ -52,7 +52,7 @@ class CategoryCard extends StatelessWidget {
                   textAlign: TextAlign.center,
                   style: const TextStyle(
                       color: Colors.white,
-                      fontSize: 16,
+                      fontSize: 14,
                       fontWeight: FontWeight.bold),
                 ),
               ),

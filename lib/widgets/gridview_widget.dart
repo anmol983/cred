@@ -14,7 +14,7 @@ class GridviewWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
-      padding: const EdgeInsets.symmetric(vertical: 2, horizontal: 8),
+      padding: const EdgeInsets.symmetric(vertical: 2, horizontal: 9),
       itemCount: categories.length,
       itemBuilder: (context, index) {
         final categoryItem = categories[index];
@@ -35,9 +35,9 @@ class GridviewWidget extends StatelessWidget {
                 physics: const NeverScrollableScrollPhysics(),
                 gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 4,
-                  crossAxisSpacing: 28, // Further reduced cross-axis spacing
-                  mainAxisSpacing: 20, // Further reduced main-axis spacing
-                  childAspectRatio: 1 / 2.5,
+                  crossAxisSpacing: 28,
+                  mainAxisSpacing: 24,
+                  childAspectRatio: 1.1 / 2.7,
                 ),
                 itemCount: categoryItem.items.length,
                 itemBuilder: (context, index) {
