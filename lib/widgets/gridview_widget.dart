@@ -14,19 +14,24 @@ class GridviewWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
-      padding: const EdgeInsets.all(8),
+      padding: const EdgeInsets.symmetric(
+          vertical: 12, horizontal: 16), // Adjusted padding
       itemCount: categories.length,
       itemBuilder: (context, index) {
         final categoryItem = categories[index];
         return Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(
-              categoryItem.title,
-              style: const TextStyle(
-                color: Colors.grey,
-                fontSize: 16,
-                fontWeight: FontWeight.bold,
+            Padding(
+              padding: const EdgeInsets.only(
+                  bottom: 8), // Added spacing between title and grid
+              child: Text(
+                categoryItem.title,
+                style: const TextStyle(
+                  color: Colors.grey,
+                  fontSize: 16,
+                  fontWeight: FontWeight.bold,
+                ),
               ),
             ),
             GridView.builder(
@@ -34,8 +39,8 @@ class GridviewWidget extends StatelessWidget {
               physics: const NeverScrollableScrollPhysics(),
               gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 4,
-                crossAxisSpacing: 20, // Reduced spacing
-                mainAxisSpacing: 8, // Reduced spacing
+                crossAxisSpacing: 12, // Reduced cross-axis spacing
+                mainAxisSpacing: 12, // Reduced main-axis spacing
                 childAspectRatio: 1 / 2.5, // Maintained aspect ratio
               ),
               itemCount: categoryItem.items.length,
@@ -54,7 +59,7 @@ class GridviewWidget extends StatelessWidget {
                 );
               },
             ),
-            //  const SizedBox(height: 20),
+            const SizedBox(height: 24), // Added spacing after each grid
           ],
         );
       },
