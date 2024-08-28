@@ -1,4 +1,5 @@
 import 'package:cred_app/provider/category_provider.dart';
+import 'package:cred_app/screens/home_page.dart';
 import 'package:cred_app/widgets/gridview_widget.dart';
 import 'package:cred_app/widgets/listview_widget.dart';
 import 'package:flutter/material.dart';
@@ -66,12 +67,12 @@ class _ToggleViewPageState extends State<ToggleViewPage> {
                                 borderRadius: BorderRadius.zero,
                                 children: [
                                   Icon(
-                                    Icons.view_list_sharp,
+                                    Icons.grid_view_sharp,
                                     size: 20,
                                     color: Colors.black,
                                   ),
                                   Icon(
-                                    Icons.grid_view_sharp,
+                                    Icons.menu,
                                     size: 20,
                                     color: Colors.black,
                                   ),
@@ -100,18 +101,18 @@ class _ToggleViewPageState extends State<ToggleViewPage> {
                               borderRadius: BorderRadius.zero,
                               children: [
                                 Icon(
-                                  isHeadingVisible
-                                      ? Icons.arrow_drop_up
-                                      : Icons.arrow_drop_down,
+                                  Icons.keyboard_arrow_down_outlined,
                                   color: Colors.white,
                                   size: 20,
                                 ),
                               ],
-                              isSelected: [isHeadingVisible],
+                              isSelected: [false],
                               onPressed: (int index) {
-                                setState(() {
-                                  isHeadingVisible = !isHeadingVisible;
-                                });
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => CredMintPage()),
+                                );
                               },
                             ),
                           ],

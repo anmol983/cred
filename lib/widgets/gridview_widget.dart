@@ -14,53 +14,49 @@ class GridviewWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
-      padding: const EdgeInsets.symmetric(
-          vertical: 12, horizontal: 16), // Adjusted padding
+      padding: const EdgeInsets.symmetric(vertical: 2, horizontal: 8),
       itemCount: categories.length,
       itemBuilder: (context, index) {
         final categoryItem = categories[index];
-        return Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Padding(
-              padding: const EdgeInsets.only(
-                  bottom: 8), // Added spacing between title and grid
-              child: Text(
+        return Flexible(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
                 categoryItem.title,
                 style: const TextStyle(
                   color: Colors.grey,
-                  fontSize: 16,
+                  fontSize: 14,
                   fontWeight: FontWeight.bold,
                 ),
               ),
-            ),
-            GridView.builder(
-              shrinkWrap: true,
-              physics: const NeverScrollableScrollPhysics(),
-              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 4,
-                crossAxisSpacing: 12, // Reduced cross-axis spacing
-                mainAxisSpacing: 12, // Reduced main-axis spacing
-                childAspectRatio: 1 / 2.5, // Maintained aspect ratio
+              GridView.builder(
+                shrinkWrap: true,
+                physics: const NeverScrollableScrollPhysics(),
+                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 4,
+                  crossAxisSpacing: 28, // Further reduced cross-axis spacing
+                  mainAxisSpacing: 20, // Further reduced main-axis spacing
+                  childAspectRatio: 1 / 2.5,
+                ),
+                itemCount: categoryItem.items.length,
+                itemBuilder: (context, index) {
+                  final item = categoryItem.items[index];
+                  return GestureDetector(
+                    onTap: () {
+                      Provider.of<CategoryProvider>(context, listen: false)
+                          .selectCategory(item);
+                      Navigator.of(context).pop();
+                    },
+                    child: CategoryCard(
+                      categoryItem: item,
+                      isGrid: isGridView,
+                    ),
+                  );
+                },
               ),
-              itemCount: categoryItem.items.length,
-              itemBuilder: (context, index) {
-                final item = categoryItem.items[index];
-                return GestureDetector(
-                  onTap: () {
-                    Provider.of<CategoryProvider>(context, listen: false)
-                        .selectCategory(item);
-                    Navigator.of(context).pop();
-                  },
-                  child: CategoryCard(
-                    categoryItem: item,
-                    isGrid: isGridView,
-                  ),
-                );
-              },
-            ),
-            const SizedBox(height: 24), // Added spacing after each grid
-          ],
+            ],
+          ),
         );
       },
     );
